@@ -1,0 +1,9 @@
+name,age,gender,education,skills,experience,years_of_experience
+John Smith,45,Male,PhD in Computer Science,"Python, Machine Learning, Data Science","Senior Data Scientist at TechCorp, Research Lead at AI Solutions",15
+Emma Johnson,28,Female,Masters in Software Engineering,"Java, Python, Cloud Architecture","Software Engineer at CloudTech, DevOps Lead at WebSolutions",6
+David Garcia,35,Male,Bachelors in Information Technology,"JavaScript, React, Node.js","Frontend Developer at AppWorks, Full Stack Engineer at TechStart",8
+Sarah Lee,32,Female,Masters in Data Analytics,"R, SQL, Tableau, Statistical Analysis","Data Analyst at DataCorp, Business Intelligence Specialist at InfoTech",7
+Michael Brown,52,Male,MBA,"Project Management, Leadership, Strategic Planning","Project Manager at Enterprise Inc, Director of Operations at BusinessTech",20
+Lisa Wang,26,Female,Bachelors in Computer Engineering,"C++, Embedded Systems, IoT","Junior Engineer at HardwareTech, Embedded Systems Developer at IoTSolutions",3
+James Wilson,42,Male,PhD in Mathematics,"Algorithm Design, Cryptography, Python","Cryptography Researcher at SecureTech, Algorithm Engineer at SearchCorp",12
+Aisha Patel,29,Female,Masters in Artificial Intelligence,"Deep Learning, TensorFlow, Computer Vision","AI Researcher at VisionAI, Machine Learning Engineer at ModelCorp",4
