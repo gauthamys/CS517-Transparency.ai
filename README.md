@@ -13,7 +13,7 @@ Have you ever applied to a job and received a rejection with no explanation? Lef
 - Ollama
 
 ### Installation
-1. **Install and Start Ollama**
+1. **Install and Start Ollama**<br />
    Install from: https://ollama.com/download
    ```bash
    ollama pull llama3.2
