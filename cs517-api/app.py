@@ -17,7 +17,7 @@ CORS(app)
 # Configuration
 OLLAMA_API_URL = "http://localhost:11434/api/generate"
 DEFAULT_MODEL = "llama3.2"
-CSV_PATH = "candidates_small.csv"
+CSV_PATH = "candidates.csv"
 
 # Load candidates data
 def load_candidates():

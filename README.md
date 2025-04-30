@@ -1,8 +1,6 @@
 # Transparency.ai
 
-![alt text](images/ui.png)
-
-![alt text](images/relevance.png)
+![alt text](images/ui-new.png)
 
 **Get actionable feedback on every job application**
 
