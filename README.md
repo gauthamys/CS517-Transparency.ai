@@ -13,7 +13,8 @@ Have you ever applied to a job and received a rejection with no explanation? Lef
 - Ollama
 
 ### Installation
-1. **Start Ollama**
+1. **Install and Start Ollama**
+   Install from: https://ollama.com/download
    ```bash
    ollama pull llama3.2
    ollama serve
@@ -41,6 +42,6 @@ Have you ever applied to a job and received a rejection with no explanation? Lef
    npm start
    ```
 
-3. **Access the application**
+3. **Access the application**<br />
    Frontend: http://localhost:3000
    Backend API: http://localhost:8000/api
