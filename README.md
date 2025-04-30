@@ -8,11 +8,16 @@ Have you ever applied to a job and received a rejection with no explanation? Lef
 
 ### Prerequisites
 
-- Python 3.10 environment
+- Python 3.19
 - Node.js & npm/yarn
 - Ollama
 
 ### Installation
+1. **Start Ollama**
+   ```bash
+   ollama pull llama3.2
+   ollama serve
+   ```
 
 1. **Clone the repository**
    ```bash
@@ -37,5 +42,5 @@ Have you ever applied to a job and received a rejection with no explanation? Lef
    ```
 
 3. **Access the application**
-   - Frontend: http://localhost:3000
-   - Backend API: http://localhost:8000/api
+   Frontend: http://localhost:3000
+   Backend API: http://localhost:8000/api
