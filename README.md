@@ -2,8 +2,6 @@
 
 ![alt text](images/ui-new.png)
 
-Have you ever applied to a job and received a rejection with no explanation? Left wondering what in your profile was lacking, and playing Russian roulette with applications? With Transparency.ai, you get detailed feedback—whether it’s a rejection, acceptance, or a “maybe.” Our ATS (Applicant Tracking System) parser analyzes your resume/profile against any job description and suggests targeted improvements to boost your chances.
-
 ## Steps to run
 
 ### Prerequisites
