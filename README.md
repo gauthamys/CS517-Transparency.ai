@@ -6,7 +6,9 @@ This repo contains code for using LIME in
 - Hiring Decisions and
 - Measuring Faithfulness in CoT reasoning and explanations
   
-PS: Bias Analysis and Mitigation Code found at : https://github.com/NiharikaShekar/517_Project
+PS: Bias Analysis and Mitigation Code found at : <br />
+https://github.com/NiharikaShekar/517_Project <br />
+https://github.com/Pradeep-18062002/ai-hiring-bias-project
 
 ![alt text](images/ui-new.png)
 
