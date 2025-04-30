@@ -25,6 +25,7 @@ Have you ever applied to a job and received a rejection with no explanation? Lef
    ```bash
    cd cs517-api
    python -m venv .venv
+   source .venv/bin/activate
    pip install -r requirements.txt
    python app.py
    ```
