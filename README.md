@@ -21,14 +21,17 @@ Have you ever applied to a job and received a rejection with no explanation? Lef
    ```
 
 2. **Bring up services**
+   Go into the api subfolder
    ```bash
    cd cs517-api
+   python -m venv .venv
+   pip install -r requirements.txt
    python app.py
    ```
-   Open up a new terminal
+   Go into the frontend subfolder
    ```bash
    cd cs517-frontend
-   npm i
+   npm install
    npm start
    ```
 
