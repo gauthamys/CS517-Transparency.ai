@@ -1,11 +1,31 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 const CandidateDetails = ({ candidate, mode }) => {
+  const [showHighlights, setShowHighlights] = useState(true);
+  
   // For advanced mode, extract structured data
   const isAdvanced = mode === 'advanced';
+  
+  // Get the decision and confidence values
   const decision = isAdvanced ? candidate.evaluation.decision : null;
   const confidence = isAdvanced ? candidate.evaluation.confidence : null;
-  const explanation = isAdvanced ? candidate.evaluation.explanation : candidate.evaluation;
+  
+  // Get the original explanation
+  const rawExplanation = isAdvanced ? candidate.evaluation.explanation : candidate.evaluation;
+  
+  // Get the phrase matches and relevance metrics (if available)
+  const phraseMatches = isAdvanced ? 
+    candidate.evaluation.phrase_matches : 
+    candidate.phrase_matches;
+    
+  const relevanceMetrics = isAdvanced ?
+    candidate.evaluation.relevance_metrics :
+    null;
+  
+  // Use highlighted explanation if available and highlights are enabled
+  const explanationToShow = phraseMatches && showHighlights ? 
+    phraseMatches.highlighted_explanation_html : 
+    rawExplanation;
   
   // Calculate the confidence circle
   const getConfidenceCircle = () => {
@@ -49,6 +69,23 @@ const CandidateDetails = ({ candidate, mode }) => {
           </div>
         </div>
       </div>
+    );
+  };
+
+  // Render the relevance metrics badge
+  const getRelevanceBadge = () => {
+    if (!relevanceMetrics) return null;
+    
+    const { relevance_ratio } = relevanceMetrics;
+    
+    let color = 'bg-yellow-100 text-yellow-800';
+    if (relevance_ratio >= 20) color = 'bg-green-100 text-green-800';
+    else if (relevance_ratio < 10) color = 'bg-red-100 text-red-800';
+    
+    return (
+      <span className={`inline-flex items-center px-2.5 py-0.5 rounded-md text-sm font-medium ${color}`}>
+        Relevance: {relevance_ratio}%
+      </span>
     );
   };
 
@@ -125,10 +162,61 @@ const CandidateDetails = ({ candidate, mode }) => {
           </div>
           
           <div>
-            <h3 className="text-lg font-medium text-gray-900 mb-2">AI Evaluation</h3>
+            <h3 className="text-lg font-medium text-gray-900 mb-2 flex justify-between items-center">
+              <span>AI Evaluation</span>
+              {phraseMatches && (
+                <div className="flex items-center space-x-2">
+                  {getRelevanceBadge()}
+                  <button 
+                    onClick={() => setShowHighlights(!showHighlights)}
+                    className={`text-xs px-2 py-1 rounded ${showHighlights ? 'bg-indigo-100 text-indigo-800' : 'bg-gray-100 text-gray-800'}`}
+                  >
+                    {showHighlights ? 'Hide Highlights' : 'Show Highlights'}
+                  </button>
+                </div>
+              )}
+            </h3>
             <div className="bg-gray-50 rounded-lg p-4">
-              <p className="whitespace-pre-line">{explanation}</p>
+              {showHighlights && phraseMatches ? (
+                <div dangerouslySetInnerHTML={{ __html: explanationToShow }} />
+              ) : (
+                <p className="whitespace-pre-line">{rawExplanation}</p>
+              )}
+              
+              {relevanceMetrics && (
+                <div className="mt-4 pt-4 border-t border-gray-200">
+                  <div className="flex items-center justify-between text-sm text-gray-600">
+                    <span>Candidate attributes mentioned: {relevanceMetrics.matches_count}</span>
+                    <span>Total words: {relevanceMetrics.total_words}</span>
+                    <span className="font-medium">Relevance score: {relevanceMetrics.relevance_ratio}%</span>
+                  </div>
+                </div>
+              )}
             </div>
+            
+            {phraseMatches && phraseMatches.matches && phraseMatches.matches.length > 0 && (
+              <div className="mt-4">
+                <h4 className="text-sm font-medium text-gray-700 mb-2">Matches Found:</h4>
+                <div className="bg-gray-50 rounded-lg p-3 overflow-auto max-h-40">
+                  <table className="w-full text-xs">
+                    <thead className="text-left">
+                      <tr>
+                        <th className="pb-2">Field</th>
+                        <th className="pb-2">Keyword</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {phraseMatches.matches.map((match, idx) => (
+                        <tr key={idx} className="border-t border-gray-200">
+                          <td className="py-1 pr-4 text-gray-600">{match.field}</td>
+                          <td className="py-1 font-medium">{match.keyword}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            )}
           </div>
         </div>
         
@@ -162,6 +250,49 @@ const CandidateDetails = ({ candidate, mode }) => {
                     </div>
                   );
                 })}
+              </div>
+            </div>
+          )}
+          
+          {/* New section to display match statistics */}
+          {phraseMatches && (
+            <div className="mt-6">
+              <h3 className="text-lg font-medium text-gray-900 mb-2">Match Analysis</h3>
+              <div className="bg-gray-50 rounded-lg p-4">
+                <div className="space-y-3">
+                  {/* Match count gauge */}
+                  <div>
+                    <div className="flex justify-between text-sm mb-1">
+                      <span className="text-gray-600">Matches Found</span>
+                      <span className="font-medium">{phraseMatches.match_count}</span>
+                    </div>
+                    <div className="w-full bg-gray-200 rounded-full h-2.5">
+                      <div 
+                        className="bg-blue-600 h-2.5 rounded-full" 
+                        style={{ width: `${Math.min(100, phraseMatches.match_count * 5)}%` }}
+                      ></div>
+                    </div>
+                  </div>
+                  
+                  {/* Relevance gauge (if available) */}
+                  {relevanceMetrics && (
+                    <div>
+                      <div className="flex justify-between text-sm mb-1">
+                        <span className="text-gray-600">Relevance Ratio</span>
+                        <span className="font-medium">{relevanceMetrics.relevance_ratio}%</span>
+                      </div>
+                      <div className="w-full bg-gray-200 rounded-full h-2.5">
+                        <div 
+                          className={`h-2.5 rounded-full ${
+                            relevanceMetrics.relevance_ratio >= 20 ? 'bg-green-500' : 
+                            relevanceMetrics.relevance_ratio >= 10 ? 'bg-yellow-500' : 'bg-red-500'
+                          }`}
+                          style={{ width: `${Math.min(100, relevanceMetrics.relevance_ratio * 2)}%` }}
+                        ></div>
+                      </div>
+                    </div>
+                  )}
+                </div>
               </div>
             </div>
           )}
