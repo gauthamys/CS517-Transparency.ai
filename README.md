@@ -1,8 +1,12 @@
 # CS517 - Socially Responsible AI Course Project - Transparency.ai
 
-Locally Explainable and Interpretable AI Hiring Decisions
+## Locally Explainable and Interpretable AI Hiring Decisions
 
-Bias Analysis and Mitigation Code found at : https://github.com/NiharikaShekar/517_Project
+This repo contains code for using LIME in 
+- Hiring Decisions and
+- Measuring Faithfulness in CoT reasoning and explanations
+  
+PS: Bias Analysis and Mitigation Code found at : https://github.com/NiharikaShekar/517_Project
 
 ![alt text](images/ui-new.png)
 
