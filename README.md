@@ -1,4 +1,4 @@
-# Transparency.ai
+# CS517 - Socially Responsible AI Course Project - Transparency.ai
 
 ![alt text](images/ui-new.png)
 
